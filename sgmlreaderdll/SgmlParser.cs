@@ -12,7 +12,7 @@ namespace Sgml {
     };
 
     public class Entity {
-        public const Char EOF = (char)65535;
+        public const char EOF = (char)65535;
         public string Proxy;
         public string Name;
         public bool Internal;
@@ -64,9 +64,7 @@ namespace Sgml {
             }
         }
 
-        public int LinePosition {
-            get { return this.absolutePos - this.lineStart + 1; }
-        }
+        public int LinePosition => this.absolutePos - this.lineStart + 1;
 
         public char ReadChar() {
             char ch = (char)this.stm.Read();
@@ -179,10 +177,8 @@ namespace Sgml {
             }
         }
 
-        public Encoding GetEncoding(){
-            return this.encoding;
-        }
-        
+        public Encoding GetEncoding() => this.encoding;
+
         public void Close() {
             if (this.weOwnTheStream) 
                 this.stm.Close();
@@ -199,17 +195,17 @@ namespace Sgml {
         public string ScanToken(StringBuilder sb, string term, bool nmtoken) {
             sb.Length = 0;
             char ch = Lastchar;
-            if (nmtoken && ch != '_' && !Char.IsLetter(ch)) {
+            if (nmtoken && ch != '_' && !char.IsLetter(ch)) {
                 throw new Exception(
-                    String.Format("Invalid name start character '{0}'", ch));
+                    string.Format("Invalid name start character '{0}'", ch));
             }
             while (ch != Entity.EOF && term.IndexOf(ch)<0) {
-                if (!nmtoken || ch == '_' || ch == '.' || ch == '-' || ch == ':' || Char.IsLetterOrDigit(ch)) {
+                if (!nmtoken || ch == '_' || ch == '.' || ch == '-' || ch == ':' || char.IsLetterOrDigit(ch)) {
                     sb.Append(ch);
                 } 
                 else {
                     throw new Exception(
-                        String.Format("Invalid name character '{0}'", ch));
+                        string.Format("Invalid name character '{0}'", ch));
                 }
                 ch = ReadChar();
             }
@@ -353,29 +349,23 @@ namespace Sgml {
             return Convert.ToChar(v).ToString();
         }
 
-        static int[] CtrlMap = new int[] {
+        static readonly int[] CtrlMap = new[] {
                                              // This is the windows-1252 mapping of the code points 0x80 through 0x9f.
                                              8364, 129, 8218, 402, 8222, 8230, 8224, 8225, 710, 8240, 352, 8249, 338, 141,
                                              381, 143, 144, 8216, 8217, 8220, 8221, 8226, 8211, 8212, 732, 8482, 353, 8250, 
                                              339, 157, 382, 376
                                          };
 
-        public void Error(string msg) {
-            throw new Exception(msg);
-        }
+        public void Error(string msg) => throw new Exception(msg);
 
         public void Error(string msg, char ch) {
-            string str = (ch == Entity.EOF) ? "EOF" : Char.ToString(ch);            
-            throw new Exception(String.Format(msg, str));
+            string str = (ch == Entity.EOF) ? "EOF" : char.ToString(ch);            
+            throw new Exception(string.Format(msg, str));
         }
 
-        public void Error(string msg, int x) {
-            throw new Exception(String.Format(msg, x));
-        }
+        public void Error(string msg, int x) => throw new Exception(string.Format(msg, x));
 
-        public void Error(string msg, string arg) {
-            throw new Exception(String.Format(msg, arg));
-        }
+        public void Error(string msg, string arg) => throw new Exception(string.Format(msg, arg));
 
         public string Context() {
             Entity p = this;
@@ -383,10 +373,10 @@ namespace Sgml {
             while (p != null) {
                 string msg;
                 if (p.Internal) {
-                    msg = String.Format("\nReferenced on line {0}, position {1} of internal entity '{2}'", p.Line, p.LinePosition, p.Name);
+                    msg = string.Format("\nReferenced on line {0}, position {1} of internal entity '{2}'", p.Line, p.LinePosition, p.Name);
                 } 
                 else {
-                    msg = String.Format("\nReferenced on line {0}, position {1} of '{2}' entity at [{3}]", p.Line, p.LinePosition, p.Name, p.ResolvedUri.AbsolutePath);
+                    msg = string.Format("\nReferenced on line {0}, position {1} of '{2}' entity at [{3}]", p.Line, p.LinePosition, p.Name, p.ResolvedUri.AbsolutePath);
                 }
                 sb.Append(msg);
                 p = p.Parent;
@@ -394,9 +384,7 @@ namespace Sgml {
             return sb.ToString();
         }
 
-        public static bool IsLiteralType(string token) {
-            return (token == "CDATA" || token == "SDATA" || token == "PI");
-        }
+        public static bool IsLiteralType(string token) => (token == "CDATA" || token == "SDATA" || token == "PI");
 
         public void SetLiteralType(string token) {
             switch (token) {
@@ -415,12 +403,12 @@ namespace Sgml {
 
     // This class decodes an HTML/XML stream correctly.
     internal class HtmlStream : TextReader {
-        Stream stm;
-        byte[] rawBuffer;
+        readonly Stream stm;
+        readonly byte[] rawBuffer;
         int rawPos;
         int rawUsed;
         Encoding encoding;
-        Decoder decoder;
+        readonly Decoder decoder;
         char[] buffer;
         int used;
         int pos;
@@ -434,7 +422,7 @@ namespace Sgml {
                 stm = CopyToMemoryStream(stm);
             }
             this.stm = stm;
-            rawBuffer = new Byte[BUFSIZE];
+            rawBuffer = new byte[BUFSIZE];
             rawUsed = stm.Read(rawBuffer, 0, 4); // maximum byte order mark
             this.buffer = new char[BUFSIZE];
 
@@ -463,11 +451,7 @@ namespace Sgml {
             
         }
 
-        public Encoding Encoding {
-            get {
-                return this.encoding;
-            }
-        }
+        public Encoding Encoding => this.encoding;
 
         Stream CopyToMemoryStream(Stream s){
             int size = 100000; // large heap is more efficient
@@ -708,7 +692,7 @@ namespace Sgml {
                 return null;
             char ch = (char)c;
             int start = pos;
-            while (pos < used - 1 && ( Char.IsLetterOrDigit(ch) || ch == '-' || ch == '_' || ch == ':')) {
+            while (pos < used - 1 && ( char.IsLetterOrDigit(ch) || ch == '-' || ch == '_' || ch == ':')) {
                 ch = buffer[++pos];
             }
             if (start == pos) return null;
@@ -779,9 +763,8 @@ namespace Sgml {
             return 0;
         }
 
-        public override int ReadBlock(char[] buffer, int index, int count) {
-            return Read(buffer, index, count);
-        }
+        public override int ReadBlock(char[] buffer, int index, int count) => Read(buffer, index, count);
+
         // Read up to end of line, or full buffer, whichever comes first.
         public int ReadLine(char[] buffer, int start, int length) {
             int i = 0;
@@ -816,16 +799,12 @@ namespace Sgml {
             }
             return sb.ToString();
         }
-        public override void Close() {
-            stm.Close();
-        }
+        public override void Close() => stm.Close();
     }
     internal abstract class Ucs4Decoder : Decoder {
         internal byte[] temp = new byte[4];
         internal int tempBytes = 0;
-        public override int GetCharCount(byte[] bytes, int index, int count) {
-            return (count + tempBytes) / 4;
-        }
+        public override int GetCharCount(byte[] bytes, int index, int count) => (count + tempBytes) / 4;
         internal abstract int GetFullChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex);
         public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex) {
             int i = tempBytes;
@@ -855,7 +834,7 @@ namespace Sgml {
                 }
             return i;
         }
-        internal char UnicodeToUTF16(UInt32 code) {
+        internal char UnicodeToUTF16(uint code) {
             byte lowerByte, higherByte;
             lowerByte = (byte)(0xD7C0 + (code >> 10));
             higherByte = (byte)(0xDC00 | code & 0x3ff);
@@ -864,11 +843,11 @@ namespace Sgml {
     }
     internal class Ucs4DecoderBigEngian : Ucs4Decoder {
         internal override int GetFullChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex) {
-            UInt32 code;
+            uint code;
             int i, j;
             byteCount += byteIndex;
             for (i = byteIndex, j = charIndex; i + 3 < byteCount; ) {
-                code = (UInt32)(((bytes[i + 3]) << 24) | (bytes[i + 2] << 16) | (bytes[i + 1] << 8) | (bytes[i]));
+                code = (uint)(((bytes[i + 3]) << 24) | (bytes[i + 2] << 16) | (bytes[i + 1] << 8) | (bytes[i]));
                 if (code > 0x10FFFF) {
                     throw new Exception("Invalid character 0x" + code.ToString("x") + " in encoding");
                 } else if (code > 0xFFFF) {
@@ -889,11 +868,11 @@ namespace Sgml {
     };
     internal class Ucs4DecoderLittleEndian : Ucs4Decoder {
         internal override int GetFullChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex) {
-            UInt32 code;
+            uint code;
             int i, j;
             byteCount += byteIndex;
             for (i = byteIndex, j = charIndex; i + 3 < byteCount; ) {
-                code = (UInt32)(((bytes[i]) << 24) | (bytes[i + 1] << 16) | (bytes[i + 2] << 8) | (bytes[i + 3]));
+                code = (uint)(((bytes[i]) << 24) | (bytes[i + 1] << 16) | (bytes[i + 2] << 8) | (bytes[i + 3]));
                 if (code > 0x10FFFF) {
                     throw new Exception("Invalid character 0x" + code.ToString("x") + " in encoding");
                 } else if (code > 0xFFFF) {
@@ -932,9 +911,7 @@ namespace Sgml {
         public string[] Exclusions;
         public AttList AttList;
 
-        public AttDef FindAttribute(string name){
-            return AttList[name.ToUpper()];
-        }
+        public AttDef FindAttribute(string name) => AttList[name.ToUpper()];
 
         public void AddAttDefs(AttList list)
         {
@@ -988,10 +965,7 @@ namespace Sgml {
         public int CurrentDepth;
         public Group Model;
 
-        public ContentModel()
-        {
-            Model = new Group(null);
-        }
+        public ContentModel() => Model = new Group(null);
 
         public void PushGroup()
         {
@@ -1008,20 +982,11 @@ namespace Sgml {
             return CurrentDepth;
         }
 
-        public void AddSymbol(string sym)
-        {
-            Model.AddSymbol(sym);
-        }
+        public void AddSymbol(string sym) => Model.AddSymbol(sym);
 
-        public void AddConnector(char c)
-        {
-            Model.AddConnector(c);
-        }
+        public void AddConnector(char c) => Model.AddConnector(c);
 
-        public void AddOccurrence(char c)
-        {
-            Model.AddOccurrence(c);
-        }
+        public void AddOccurrence(char c) => Model.AddOccurrence(c);
 
         public void SetDeclaredContent(string dc)
         {
@@ -1037,7 +1002,7 @@ namespace Sgml {
                     break;
                 default:
                     throw new Exception(
-                        String.Format("Declared content type '{0}' is not supported", dc));
+                        string.Format("Declared content type '{0}' is not supported", dc));
             }
         }
 
@@ -1067,9 +1032,7 @@ namespace Sgml {
         public Occurrence Occurrence;
         public bool Mixed;
 
-        public bool TextOnly {
-            get { return this.Mixed && Members.Count == 0; }
-        }
+        public bool TextOnly => this.Mixed && Members.Count == 0;
 
         public Group(Group parent)
         {
@@ -1078,10 +1041,8 @@ namespace Sgml {
             this.GroupType = GroupType.None;
             Occurrence = Occurrence.Required;
         }
-        public void AddGroup(Group g)
-        {
-            Members.Add(g);
-        }
+        public void AddGroup(Group g) => Members.Add(g);
+
         public void AddSymbol(string sym)
         {
             if (sym == "#PCDATA") 
@@ -1098,7 +1059,7 @@ namespace Sgml {
             if (!Mixed && Members.Count == 0) 
             {
                 throw new Exception(
-                    String.Format("Missing token before connector '{0}'.", c)
+                    string.Format("Missing token before connector '{0}'.", c)
                     );
             }
             GroupType gt = GroupType.None;
@@ -1117,7 +1078,7 @@ namespace Sgml {
             if (GroupType != GroupType.None && GroupType != gt) 
             {
                 throw new Exception(
-                    String.Format("Connector '{0}' is inconsistent with {1} group.", c, GroupType.ToString())
+                    string.Format("Connector '{0}' is inconsistent with {1} group.", c, GroupType.ToString())
                     );
             }
             GroupType = gt;
@@ -1147,7 +1108,7 @@ namespace Sgml {
             // Do a simple search of members.
             foreach (object obj in Members) 
             {
-                if (obj is String) 
+                if (obj is string) 
                 {
                     if (obj == (object)name) // XmlNameTable optimization
                         return true;
@@ -1157,7 +1118,7 @@ namespace Sgml {
             // that have optional start tags and over child groups.
             foreach (object obj in Members) 
             {
-                if (obj is String) 
+                if (obj is string) 
                 {
                     string s = (string)obj;
                     ElementDecl e = dtd.FindElement(s);
@@ -1202,11 +1163,7 @@ namespace Sgml {
         public string Default;
         public AttributePresence Presence;
 
-        public AttDef(string name)
-        {
-            Name = name;
-        }
-
+        public AttDef(string name) => Name = name;
 
         public void SetType(string type)
         {
@@ -1278,7 +1235,7 @@ namespace Sgml {
             }
             else 
             {
-                throw new Exception(String.Format("Attribute value '{0}' not supported", token));
+                throw new Exception(string.Format("Attribute value '{0}' not supported", token));
             }
             return hasDefault;
         }
@@ -1286,42 +1243,27 @@ namespace Sgml {
 
     public class AttList : IEnumerable
     {
-        Hashtable AttDefs;
+        readonly Hashtable AttDefs;
         
-        public AttList()
-        {
-            AttDefs = new Hashtable();
-        }
+        public AttList() => AttDefs = new Hashtable();
 
-        public void Add(AttDef a)
-        {
-            AttDefs.Add(a.Name, a);
-        }
+        public void Add(AttDef a) => AttDefs.Add(a.Name, a);
 
-        public AttDef this[string name]
-        {
-            get 
-            {
-                return (AttDef)AttDefs[name];
-            }
-        }
+        public AttDef this[string name] => (AttDef)AttDefs[name];
 
-        public IEnumerator GetEnumerator()
-        {
-            return AttDefs.Values.GetEnumerator();
-        }
+        public IEnumerator GetEnumerator() => AttDefs.Values.GetEnumerator();
     }
 
     public class SgmlDtd
     {
         public string Name;
 
-        Hashtable elements;
-        Hashtable pentities;
-        Hashtable entities;
-        StringBuilder sb;      
+        readonly Hashtable elements;
+        readonly Hashtable pentities;
+        readonly Hashtable entities;
+        readonly StringBuilder sb;      
         Entity current;
-        XmlNameTable nameTable;
+        readonly XmlNameTable nameTable;
 
         public SgmlDtd(string name, XmlNameTable nt)
         {
@@ -1333,7 +1275,7 @@ namespace Sgml {
             this.sb = new StringBuilder();
         }
 
-        public XmlNameTable NameTable { get { return this.nameTable; } }
+        public XmlNameTable NameTable => this.nameTable;
 
         public static SgmlDtd Parse(Uri baseUri, string name, string pubid, string url, string subset, string proxy, XmlNameTable nt)
         {
@@ -1371,15 +1313,9 @@ namespace Sgml {
             return dtd;
         }
 
-        public Entity FindEntity(string name)
-        {
-            return (Entity)this.entities[name];
-        }
+        public Entity FindEntity(string name) => (Entity)this.entities[name];
 
-        public ElementDecl FindElement(string name)
-        {
-            return (ElementDecl)this.elements[name.ToUpper()];
-        }
+        public ElementDecl FindElement(string name) => (ElementDecl)this.elements[name.ToUpper()];
 
         //-------------------------------- Parser -------------------------
         void PushEntity(Uri baseUri, Entity e)
@@ -1525,10 +1461,7 @@ namespace Sgml {
             }
         }
 
-        void ParseIncludeSection()
-        {
-            throw new NotImplementedException("Include Section");
-        }
+        void ParseIncludeSection() => throw new NotImplementedException("Include Section");
 
         void ParseIgnoreSection()
         {
@@ -1577,7 +1510,7 @@ namespace Sgml {
             return e;
         }
         
-        static string WhiteSpace = " \r\n\t";
+        static readonly string WhiteSpace = " \r\n\t";
 
         void ParseEntity()
         {
@@ -1657,13 +1590,13 @@ namespace Sgml {
         {
             char ch = this.current.SkipWhitespace();
             string[] names = ParseNameGroup(ch, true);
-            ch = Char.ToUpper(this.current.SkipWhitespace());
+            ch = char.ToUpper(this.current.SkipWhitespace());
             bool sto = false;
             bool eto = false;
             if (ch == 'O' || ch == '-') {
                 sto = (ch == 'O'); // start tag optional?   
                 this.current.ReadChar();
-                ch = Char.ToUpper(this.current.SkipWhitespace());
+                ch = char.ToUpper(this.current.SkipWhitespace());
                 if (ch == 'O' || ch == '-'){
                     eto = (ch == 'O'); // end tag optional? 
                     ch = this.current.ReadChar();
@@ -1725,7 +1658,7 @@ namespace Sgml {
             }
         }
 
-        static string ngterm = " \r\n\t|,)";
+        static readonly string ngterm = " \r\n\t|,)";
         string[] ParseNameGroup(char ch, bool nmtokens)
         {
             ArrayList names = new ArrayList();
@@ -1765,7 +1698,7 @@ namespace Sgml {
                 name = this.nameTable.Add(name);
                 names.Add(name);
             }
-            return (string[])names.ToArray(typeof(String));
+            return (string[])names.ToArray(typeof(string));
         }
 
         void ParseNameList(ArrayList names, bool nmtokens)
@@ -1799,7 +1732,7 @@ namespace Sgml {
             }
         }
 
-        static string dcterm = " \r\n\t>";
+        static readonly string dcterm = " \r\n\t>";
         ContentModel ParseContentModel(char ch)
         {
             ContentModel cm = new ContentModel();
@@ -1829,7 +1762,7 @@ namespace Sgml {
             return cm;
         }
 
-        static string cmterm = " \r\n\t,&|()?+*";
+        static readonly string cmterm = " \r\n\t,&|()?+*";
         void ParseModel(char cmt, ContentModel cm)
         {
             // Called when part of the model is made up of the contents of a parameter entity
@@ -1926,7 +1859,7 @@ namespace Sgml {
             }
         }
 
-        static string peterm = " \t\r\n>";
+        static readonly string peterm = " \t\r\n>";
         void ParseAttList(AttList list, char term)
         {
             char ch = this.current.SkipWhitespace();
@@ -2059,8 +1992,6 @@ namespace Sgml {
     }   
 
     class StringUtilities {
-        public static bool EqualsIgnoreCase(string a, string b){
-            return string.Compare(a, b, true, CultureInfo.InvariantCulture) == 0;
-        }
+        public static bool EqualsIgnoreCase(string a, string b) => string.Compare(a, b, true, CultureInfo.InvariantCulture) == 0;
     }
 }
