@@ -1,3 +1,5 @@
+// MODIFIED Copyright (c) 2013 - 2021 Jan Joost van Zon
+
 /*
 * 
 * An XmlReader implementation for loading SGML (including HTML) converting it

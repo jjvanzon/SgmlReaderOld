@@ -1,3 +1,5 @@
+// MODIFIED Copyright (c) 2013 - 2021 Jan Joost van Zon
+
 using System;
 using System.Reflection;
 
