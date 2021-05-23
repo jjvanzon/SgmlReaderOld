@@ -1,0 +1,29 @@
+﻿<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <copyright>$copyright$</copyright>
+    <description>$description$</description>
+    <summary>$description$</summary>
+
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <license type="expression">Apache-2.0</license>
+    <licenseUrl>https://licenses.nuget.org/Apache-2.0</licenseUrl>
+
+    <projectUrl>https://github.com/jjvanzon/SgmlReaderOld</projectUrl>
+
+    <tags></tags>
+
+    <dependencies></dependencies>
+
+  </metadata>
+
+  <files>
+    <!--<file src="README.MD" target="" />-->
+  </files>
+
+</package>

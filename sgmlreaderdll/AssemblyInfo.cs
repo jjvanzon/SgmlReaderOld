@@ -11,11 +11,9 @@ using System.Reflection;
 [assembly: AssemblyTitle("SgmlReaderOld")]
 [assembly: AssemblyDescription("Converts SGML to XML via XmlReader API")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft\n" +
-                           "Jan Joost van Zon")]
+[assembly: AssemblyCompany("Chris Lovett, Steve Bjorg, Jan Joost van Zon")]
 [assembly: AssemblyProduct("SgmlReaderOld")]
-[assembly: AssemblyCopyright("Copyright © 2002, Microsoft Corporation\n" +
-                             "Copyright © 2013-2021, Jan Joost van Zon")]
+[assembly: AssemblyCopyright("Copyright © 2002-2021, Microsoft Corporation; Copyright © 2007-2013, MindTouch; Copyright © 2013-2021, Jan Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 [assembly: CLSCompliant(true)]
