@@ -8,12 +8,14 @@ using System.Reflection;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 //
-[assembly: AssemblyTitle("SgmlReader")]
+[assembly: AssemblyTitle("SgmlReaderOld")]
 [assembly: AssemblyDescription("Converts SGML to XML via XmlReader API")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("")]
-[assembly: AssemblyCopyright("Copyright © 2002, Microsoft Corporation")]
+[assembly: AssemblyCompany("Microsoft\n" +
+                           "Jan Joost van Zon")]
+[assembly: AssemblyProduct("SgmlReaderOld")]
+[assembly: AssemblyCopyright("Copyright © 2002, Microsoft Corporation\n" +
+                             "Copyright © 2013-2021, Jan Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 [assembly: CLSCompliant(true)]
