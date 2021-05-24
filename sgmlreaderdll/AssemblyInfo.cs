@@ -9,7 +9,7 @@ using System.Reflection;
 // associated with an assembly.
 //
 [assembly: AssemblyTitle("SgmlReaderOld")]
-[assembly: AssemblyDescription(@"Converts SGML to XML via XmlReader API. (Older version for stability of older projects.)")]
+[assembly: AssemblyDescription("Converts SGML to XML via XmlReader API. (Older version for stability of older projects.)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Chris Lovett, Steve Bjorg, Jan Joost van Zon")]
 [assembly: AssemblyProduct("SgmlReaderOld")]
