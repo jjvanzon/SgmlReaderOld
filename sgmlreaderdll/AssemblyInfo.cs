@@ -1,4 +1,4 @@
-// MODIFIED Copyright (c) 2013 - 2021 Jan Joost van Zon
+ï»¿// MODIFIED Copyright (c) 2013 - 2021 Jan Joost van Zon
 
 using System;
 using System.Reflection;
@@ -9,11 +9,13 @@ using System.Reflection;
 // associated with an assembly.
 //
 [assembly: AssemblyTitle("SgmlReaderOld")]
-[assembly: AssemblyDescription("Converts SGML to XML via XmlReader API")]
+[assembly: AssemblyDescription(@"Converts SGML to XML via XmlReader API.
+
+Programmed by Chris Lovett from Microsoft. Versions 1.8.8 and up seemed to be available on NuGet already. But a project may depend on an even older version, avaiable somewhere some time ago... For the stability of older projects, this NuGet package may offer this older version 1.7.*. ""The Prequel"" ðŸ˜ƒ.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Chris Lovett, Steve Bjorg, Jan Joost van Zon")]
 [assembly: AssemblyProduct("SgmlReaderOld")]
-[assembly: AssemblyCopyright("Copyright © 2002-2021, Microsoft Corporation; Copyright © 2007-2013, MindTouch; Copyright © 2013-2021, Jan Joost van Zon")]
+[assembly: AssemblyCopyright("Copyright Â© 2002-2021, Microsoft Corporation; Copyright Â© 2007-2013, MindTouch; Copyright Â© 2013-2021, Jan Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 [assembly: CLSCompliant(true)]
