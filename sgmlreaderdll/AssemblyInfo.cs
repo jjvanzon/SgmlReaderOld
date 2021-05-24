@@ -9,9 +9,7 @@ using System.Reflection;
 // associated with an assembly.
 //
 [assembly: AssemblyTitle("SgmlReaderOld")]
-[assembly: AssemblyDescription(@"Converts SGML to XML via XmlReader API.
-
-Programmed by Chris Lovett from Microsoft. Versions 1.8.8 and up seemed to be available on NuGet already. But a project may depend on an even older version, avaiable somewhere some time ago... For the stability of older projects, this NuGet package may offer this older version 1.7.* ""The Prequel"" 😃.")]
+[assembly: AssemblyDescription(@"Converts SGML to XML via XmlReader API. (Older version for stability of older projects.)")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Chris Lovett, Steve Bjorg, Jan Joost van Zon")]
 [assembly: AssemblyProduct("SgmlReaderOld")]
