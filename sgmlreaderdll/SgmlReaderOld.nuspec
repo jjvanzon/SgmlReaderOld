@@ -23,7 +23,7 @@
   </metadata>
 
   <files>
-    <!--<file src="README.MD" target="" />-->
+    <file src="../README.MD" target="" />
   </files>
 
 </package>
