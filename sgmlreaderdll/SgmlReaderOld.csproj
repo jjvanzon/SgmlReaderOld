@@ -2,10 +2,35 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Description>Converts SGML to XML via XmlReader API. (Older version for stability of older projects.)</Description>
-    <Company>Chris Lovett, Steve Bjorg, Jan Joost van Zon</Company>
-    <Product>SgmlReaderOld</Product>
+    <Authors>Chris Lovett, Steve Bjorg, Jan Joost van Zon</Authors>
     <Copyright>Copyright © 2002-2021, Microsoft Corporation%3b Copyright © 2007-2013, MindTouch%3b Copyright © 2013-2025, Jan Joost van Zon</Copyright>
     <Version>1.7.9226</Version>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+    
+  <PropertyGroup Condition="!Exists('$(MSBuildProjectDirectory)/README.MD')">
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup Condition="!Exists('$(MSBuildProjectDirectory)/README.MD')">
+    <Content Include="$(SolutionDir)\README.md" Visible="False">
+      <Pack>True</Pack>
+      <PackagePath>\README.md</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <PropertyGroup Condition="Exists('$(MSBuildProjectDirectory)/README.MD')">
+    <PackageReadmeFile>README.MD</PackageReadmeFile>
+  </PropertyGroup>       
+
+  <ItemGroup Condition="Exists('$(MSBuildProjectDirectory)/README.MD')">
+    <Content Include="README.MD">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
