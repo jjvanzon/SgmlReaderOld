@@ -1,6 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
+    <Description>Converts SGML to XML via XmlReader API. (Older version for stability of older projects.)</Description>
+    <Company>Chris Lovett, Steve Bjorg, Jan Joost van Zon</Company>
+    <Product>SgmlReaderOld</Product>
+    <Copyright>Copyright © 2002-2021, Microsoft Corporation%3b Copyright © 2007-2013, MindTouch%3b Copyright © 2013-2025, Jan Joost van Zon</Copyright>
+    <Version>1.7.9226</Version>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
   <!--<ItemGroup>
     <Reference Update="System">
@@ -13,11 +19,4 @@
       <Name>System.XML</Name>
     </Reference>
   </ItemGroup>-->
-  <PropertyGroup>
-    <Description>Converts SGML to XML via XmlReader API. %28Older version for stability of older projects.%29</Description>
-    <Company>Chris Lovett, Steve Bjorg, Jan Joost van Zon</Company>
-    <Product>SgmlReaderOld</Product>
-    <Copyright>Copyright © 2002-2021, Microsoft Corporation%3b Copyright © 2007-2013, MindTouch%3b Copyright © 2013-2021, Jan Joost van Zon</Copyright>
-    <AssemblyVersion>1.7.9226</AssemblyVersion>
-  </PropertyGroup>
 </Project>
