@@ -10,6 +10,8 @@
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <RepositoryUrl>https://github.com/jjvanzon/SgmlReaderOld</RepositoryUrl>    
+    <PackageProjectUrl>https://github.com/jjvanzon/SgmlReaderOld</PackageProjectUrl>    
   </PropertyGroup>
     
   <PropertyGroup>
