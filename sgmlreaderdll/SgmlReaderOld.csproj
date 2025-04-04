@@ -1,49 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <ProjectType>Local</ProjectType>
-    <AssemblyKeyContainerName>
-    </AssemblyKeyContainerName>
-    <AssemblyOriginatorKeyFile>
-    </AssemblyOriginatorKeyFile>
-    <DefaultClientScript>JScript</DefaultClientScript>
-    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
-    <DefaultTargetSchema>IE50</DefaultTargetSchema>
-    <DelaySign>false</DelaySign>
-    <OutputType>Library</OutputType>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <StartupObject>
-    </StartupObject>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <BaseAddress>285212672</BaseAddress>
-    <ConfigurationOverrideFile>
-    </ConfigurationOverrideFile>
-    <DocumentationFile>
-    </DocumentationFile>
-    <FileAlignment>4096</FileAlignment>
-    <NoStdLib>false</NoStdLib>
-    <NoWarn>
-    </NoWarn>
-    <RegisterForComInterop>false</RegisterForComInterop>
-    <RemoveIntegerChecks>false</RemoveIntegerChecks>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <BaseAddress>285212672</BaseAddress>
-    <ConfigurationOverrideFile>
-    </ConfigurationOverrideFile>
-    <DocumentationFile>
-    </DocumentationFile>
-    <FileAlignment>4096</FileAlignment>
-    <NoStdLib>false</NoStdLib>
-    <NoWarn>
-    </NoWarn>
-    <RegisterForComInterop>false</RegisterForComInterop>
-    <RemoveIntegerChecks>false</RemoveIntegerChecks>
-    <DebugType>none</DebugType>
-  </PropertyGroup>
-  <ItemGroup>
+  <!--<ItemGroup>
     <Reference Update="System">
       <Name>System</Name>
     </Reference>
@@ -53,9 +12,8 @@
     <Reference Update="System.Xml">
       <Name>System.XML</Name>
     </Reference>
-  </ItemGroup>
+  </ItemGroup>-->
   <PropertyGroup>
-    <AssemblyTitle>SgmlReaderOld</AssemblyTitle>
     <Description>Converts SGML to XML via XmlReader API. %28Older version for stability of older projects.%29</Description>
     <Company>Chris Lovett, Steve Bjorg, Jan Joost van Zon</Company>
     <Product>SgmlReaderOld</Product>
