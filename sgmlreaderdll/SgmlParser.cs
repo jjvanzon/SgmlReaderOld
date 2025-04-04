@@ -1,4 +1,7 @@
-// MODIFIED Copyright (c) 2013 - 2021 Jan Joost van Zon
+// Programmed by Chris Lovett from Microsoft.
+// MODIFIED Copyright (c) 2013 - 2025 Jan Joost van Zon
+
+// ReSharper disable UnusedParameter.Local
 
 using System;
 using System.IO;
