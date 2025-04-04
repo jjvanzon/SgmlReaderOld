@@ -2,34 +2,9 @@
 
 using System;
 using System.Reflection;
-
-//
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
-//
-[assembly: AssemblyTitle("SgmlReaderOld")]
-[assembly: AssemblyDescription("Converts SGML to XML via XmlReader API. (Older version for stability of older projects.)")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Chris Lovett, Steve Bjorg, Jan Joost van Zon")]
-[assembly: AssemblyProduct("SgmlReaderOld")]
-[assembly: AssemblyCopyright("Copyright © 2002-2021, Microsoft Corporation; Copyright © 2007-2013, MindTouch; Copyright © 2013-2021, Jan Joost van Zon")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]		
 [assembly: CLSCompliant(true)]
-
-//
-// Version information for an assembly consists of the following four values:
-//
-//      Major Version
-//      Minor Version 
-//      Build Number
-//      Revision
-//
-// You can specify all the values or you can default the Revision and Build Numbers 
-// by using the '*' as shown below:
-
-[assembly: AssemblyVersion("1.7.*")]
 
 //
 // In order to sign your assembly you must specify a key to use. Refer to the 
