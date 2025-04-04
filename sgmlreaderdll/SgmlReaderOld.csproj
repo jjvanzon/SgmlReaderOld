@@ -5,7 +5,8 @@
     <Description>Converts SGML to XML via XmlReader API. (Older version for stability of older projects.)</Description>
     <Authors>Chris Lovett, Steve Bjorg, Jan Joost van Zon</Authors>
     <Copyright>Copyright © 2002-2021, Microsoft Corporation%3b Copyright © 2007-2013, MindTouch%3b Copyright © 2013-2025, Jan Joost van Zon</Copyright>
-    <Version>1.7.9226</Version>
+    <!--<Version>1.7.9226</Version>-->
+    <Version>1.7.$(BuildNum)</Version>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
@@ -21,5 +22,11 @@
       <PackagePath>\README.md</PackagePath>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JJ.AutoIncrementVersion" Version="2.0.1688">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
 </Project>
